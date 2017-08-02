@@ -28,6 +28,25 @@ var ApplePay = {
         });
 
     },
+    
+    /**
+     * Opens the Wallet app if no cards are set up
+     * @param {Function} [successCallback] - Optional success callback, recieves message object.
+     * @param {Function} [errorCallback] - Optional error callback, recieves message object.
+     * @returns {Promise}
+     */
+    setUpApplePay: function(successCallback, errorCallback) {
+        return new Promise(function(resolve, reject) {
+            exec(function(message) {
+                executeCallback(successCallback, message);
+                resolve(message);
+            }, function(message) {
+                executeCallback(errorCallback, message);
+                reject(message);
+            }, 'ApplePay', 'setUpApplePay', []);
+        });
+
+    },
 
     /**
      * Opens the Apple Pay sheet and shows the order information.
