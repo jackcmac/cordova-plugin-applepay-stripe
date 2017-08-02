@@ -438,6 +438,12 @@
     [self.commandDelegate sendPluginResult:result callbackId:self.paymentCallbackId];
 }
 
+- (void)setUpApplePay:(CDVInvokedUrlCommand*)command
+{
+    PKPassLibrary *pay = [[PKPassLibrary alloc]init];
+    [pay openPaymentSetup];
+}
+
 - (NSDictionary*) formatPaymentForApplication:(PKPayment *)payment {
     NSString *paymentData = [payment.token.paymentData base64EncodedStringWithOptions:0];
 
