@@ -3,6 +3,10 @@
 
 #import <PassKit/PassKit.h>
 
+#import "ApplePayViewController.h"
+#import "MyPluginLayer.h"
+#import "MyPluginScrollView.h"
+
 typedef void (^ARAuthorizationBlock)(PKPaymentAuthorizationStatus);
 
 @interface CDVApplePay : CDVPlugin <PKPaymentAuthorizationViewControllerDelegate>
@@ -11,7 +15,10 @@ typedef void (^ARAuthorizationBlock)(PKPaymentAuthorizationStatus);
     NSArray<NSString *>* supportedPaymentNetworks;
 }
 
+@property (nonatomic, strong) ApplePayViewController* payCtrl;
 @property (nonatomic, strong) ARAuthorizationBlock paymentAuthorizationBlock;
+@property (nonatomic) MyPluginScrollView *pluginScrollView;
+@property (nonatomic) MyPluginLayer *pluginLayer;
 
 @property (nonatomic, strong) NSString* paymentCallbackId;
 
