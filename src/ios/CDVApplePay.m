@@ -634,6 +634,28 @@
     }
 }
 
+- (void)resizeMap:(CDVInvokedUrlCommand *)command {
+    NSInteger argCnt = [command.arguments count];
+    self.mapCtrl.embedRect = [command.arguments objectAtIndex:(argCnt - 2)];
+    self.pluginLayer.embedRect = self.mapCtrl.embedRect;
+    self.pluginScrollView.debugView.embedRect = self.mapCtrl.embedRect;
+    [self.pluginLayer clearHTMLElement];
+    [self.pluginScrollView.debugView clearHTMLElement];
+
+    NSArray *HTMLs = [command.arguments objectAtIndex:(argCnt - 1)];
+    NSString *elemId;
+    NSDictionary *elemSize, *elemInfo;
+    for (int i = 0; i < [HTMLs count]; i++) {
+        elemInfo = [HTMLs objectAtIndex:i];
+        elemSize = [elemInfo objectForKey:@"size"];
+        elemId = [elemInfo objectForKey:@"id"];
+        [self.pluginLayer putHTMLElement:elemId size:elemSize];
+        [self.pluginScrollView.debugView putHTMLElement:elemId size:elemSize];
+    }
+
+    [self.mapCtrl updateMapViewLayout];
+}
+
 
 - (PKShippingMethod *)shippingMethodWithIdentifier:(NSString *)idenfifier detail:(NSString *)detail label:(NSString *)label amount:(NSDecimalNumber *)amount
 {
