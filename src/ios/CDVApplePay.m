@@ -616,6 +616,24 @@
     }
 }
 
+- (void)setDiv:(CDVInvokedUrlCommand *)command {
+    if ([command.arguments count] == 2) {
+        //[self.mapCtrl.view removeFromSuperview];
+        [self.pluginScrollView dettachView];
+        [self.pluginLayer clearHTMLElement];
+        [self.pluginScrollView.debugView clearHTMLElement];
+        self.mapCtrl.isFullScreen = NO;
+        self.pluginLayer.mapCtrl = self.mapCtrl;
+        self.pluginLayer.webView = self.webView;
+
+        [self.pluginScrollView attachView:self.mapCtrl.view];
+        [self resizeMap:command];
+    } else {
+        //[self.mapCtrl.view removeFromSuperview];
+        [self.pluginScrollView dettachView];
+    }
+}
+
 
 - (PKShippingMethod *)shippingMethodWithIdentifier:(NSString *)idenfifier detail:(NSString *)detail label:(NSString *)label amount:(NSDecimalNumber *)amount
 {
