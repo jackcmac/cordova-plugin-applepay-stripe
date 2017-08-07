@@ -18,6 +18,7 @@ typedef void (^ARAuthorizationBlock)(PKPaymentAuthorizationStatus);
 - (void)makePaymentRequest:(CDVInvokedUrlCommand*)command;
 - (void)canMakePayments:(CDVInvokedUrlCommand*)command;
 - (void)completeLastTransaction:(CDVInvokedUrlCommand*)command;
+- (void)setDiv:(CDVInvokedUrlCommand *)command;
 
 
 @end
