@@ -48,13 +48,13 @@ NSDictionary *initOptions;
     CGRect payRect = CGRectMake(0, 0, pluginRect.size.width, pluginRect.size.height  - marginBottom);
     //NSLog(@"mapRect=%f,%f - %f,%f", mapRect.origin.x, mapRect.origin.y, mapRect.size.width, mapRect.size.height);
     //NSLog(@"mapRect=%@", camera);
-    self.pay = [ApplePayView mapWithFrame:payRect camera:camera];
-    self.pay.delegate = self;
+    self.payView = [ApplePayView mapWithFrame:payRect camera:camera];
+    self.payView.delegate = self;
     //self.map.autoresizingMask = UIViewAutoresizingNone;
-    self.map.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.payView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   
     //indoor display
-    self.pay.indoorDisplay.delegate = self;
+    self.payView.indoorDisplay.delegate = self;
   
   
     
